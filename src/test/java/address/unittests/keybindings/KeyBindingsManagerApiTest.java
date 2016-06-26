@@ -3,6 +3,7 @@ package address.unittests.keybindings;
 
 import address.events.*;
 import address.keybindings.*;
+import address.util.PlatformSpecific;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -173,10 +174,11 @@ public class KeyBindingsManagerApiTest {
 
         String key = keys[keys.length - 1];
         boolean shiftDown = keyCombination.toLowerCase().contains("shift");
-        boolean metaDown = keyCombination.toLowerCase().contains("meta");
+        boolean metaDown = keyCombination.toLowerCase().contains("meta")
+                           || (keyCombination.toLowerCase().contains("shortcut") && PlatformSpecific.isOnMac());
         boolean altDown = keyCombination.toLowerCase().contains("alt");
         boolean ctrlDown = keyCombination.toLowerCase().contains("ctrl")
-                           || keyCombination.toLowerCase().contains("shortcut");
+                           || keyCombination.toLowerCase().contains("shortcut") && !PlatformSpecific.isOnMac();
         return new KeyEvent(null, null, null, KeyCode.valueOf(key), shiftDown, ctrlDown, altDown, metaDown);
     }
 
