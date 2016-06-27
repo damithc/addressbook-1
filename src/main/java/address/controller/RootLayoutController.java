@@ -131,7 +131,7 @@ public class RootLayoutController extends UiController{
     private void handleAbout() {
         logger.debug("Showing information about the application.");
         mainController.showAlertDialogAndWait(AlertType.INFORMATION, "AddressApp", "About",
-                "Version " + Version.getCurrentVersion().toString() + "\nSome code adapted from http://code.makery.ch");
+                "Version " + MainApp.VERSION.toString() + "\nSome code adapted from http://code.makery.ch");
     }
 
     /**
